@@ -113,21 +113,15 @@ class AvailableShipsPanel extends ConsumerWidget {
     return Container(
       height: 250,
       padding: const EdgeInsets.all(8),
-      child: ListView(
+      child: ListView.separated(
+        itemCount: placementProvider.shipToPlace.length,
         scrollDirection: Axis.horizontal,
-        children: [
-          ...placementProvider.shipToPlace.map(
-            (ship) {
-              return Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: DraggableShip(
-                  ship: ship,
-                  onEndDrag: highlightNotifier.removeHighlighting,
-                ),
-              );
-            },
-          ),
-        ],
+        itemBuilder: (_, index) => DraggableShip(
+          key: ValueKey(placementProvider.shipToPlace[index].id),
+          ship: placementProvider.shipToPlace[index],
+          onEndDrag: highlightNotifier.removeHighlighting,
+        ),
+        separatorBuilder: (_, __) => SizedBox(width: 16),
       ),
     );
   }
