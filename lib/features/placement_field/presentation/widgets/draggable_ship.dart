@@ -58,32 +58,30 @@ class _DraggableShipState extends ConsumerState<DraggableShip> {
   Widget build(BuildContext context) {
     return Transform.rotate(
       angle: angle,
-      child: IgnorePointer(
-        ignoring: _inDrag,
-        child: GestureDetector(
-          onPanDown: onDragStart,
-          behavior: HitTestBehavior.opaque,
-          child: Draggable<ShipDragInfo>(
-            data: data,
-            onDraggableCanceled: (_, __) => endDrag(),
-            onDragCompleted: endDrag,
-            feedback: ShipWidget.ghost(
-              ship: widget.ship,
-              touchPoint: _dragPoint,
-              displayTouchPoint: AppConfig.displayShipTouchPoint,
-              rotateQuarter: angle,
-            ),
-            childWhenDragging: Opacity(
-              opacity: 0.5,
-              child: ShipWidget(
-                ship: widget.ship,
-                rotateQuarter: angle,
-              ),
-            ),
+      child: GestureDetector(
+        onPanDown: onDragStart,
+        behavior: HitTestBehavior.opaque,
+        child: Draggable<ShipDragInfo>(
+          data: data,
+          onDraggableCanceled: (_, __) => endDrag(),
+          onDragCompleted: endDrag,
+          onDragEnd: (_) => endDrag(),
+          feedback: ShipWidget.ghost(
+            ship: widget.ship,
+            touchPoint: _dragPoint,
+            displayTouchPoint: AppConfig.displayShipTouchPoint,
+            rotateQuarter: angle,
+          ),
+          childWhenDragging: Opacity(
+            opacity: 0.5,
             child: ShipWidget(
               ship: widget.ship,
               rotateQuarter: angle,
             ),
+          ),
+          child: ShipWidget(
+            ship: widget.ship,
+            rotateQuarter: angle,
           ),
         ),
       ),
