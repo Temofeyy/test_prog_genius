@@ -1,4 +1,4 @@
-import 'package:test_prog_genius/features/placement_field/presentation/models/ship.dart';
+import 'ship.dart';
 
 
 class ShipDragInfo {

@@ -2,11 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_prog_genius/core/config.dart';
-import 'package:test_prog_genius/features/placement_field/presentation/widgets/ship_widget.dart';
 
+import '../../../../core/config.dart';
 import '../models/ship.dart';
 import '../models/ship_drag_info.dart';
+import 'ship_widget.dart';
 
 
 class DraggableShip extends ConsumerStatefulWidget {
@@ -66,7 +66,7 @@ class _DraggableShipState extends ConsumerState<DraggableShip> {
           child: Draggable<ShipDragInfo>(
             data: data,
             onDraggableCanceled: (_, __) => endDrag(),
-            onDragCompleted: () => endDrag(),
+            onDragCompleted: endDrag,
             feedback: ShipWidget.ghost(
               ship: widget.ship,
               touchPoint: _dragPoint,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_prog_genius/features/home/presentation/screens/home_screen.dart';
+import 'features/home/presentation/screens/home_screen.dart';
 
 void main() {
   runApp(
@@ -21,7 +21,7 @@ class Game extends StatelessWidget {
         appBarTheme: AppBarTheme(
           backgroundColor: Color(0xff0F1518),
           titleTextStyle: TextStyle(color: Colors.white, fontSize:  20),
-          iconTheme: IconThemeData(color: Colors.white)
+          iconTheme: IconThemeData(color: Colors.white),
         ),
       ),
       home: HomeScreen(),

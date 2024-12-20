@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:test_prog_genius/core/config.dart';
 
 import '../models/ship.dart';
 import '../screens/placement_field_screen.dart';

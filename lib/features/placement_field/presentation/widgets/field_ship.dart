@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_prog_genius/features/placement_field/presentation/screens/placement_field_screen.dart';
 
-import '../../../../core/config.dart';
 import '../models/ship.dart';
 import '../providers/field_highlighting_provider.dart';
+import '../screens/placement_field_screen.dart';
 import 'draggable_ship.dart';
 
 class FieldShip extends ConsumerWidget {

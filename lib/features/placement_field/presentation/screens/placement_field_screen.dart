@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_prog_genius/core/config.dart';
-import 'package:test_prog_genius/shared/widgets/orange_button.dart';
+import '../../../../core/config.dart';
+import '../../../../shared/widgets/orange_button.dart';
 
 import '../providers/field_highlighting_provider.dart';
 import '../providers/ship_placement_provider.dart';
@@ -67,17 +67,20 @@ class _BattleshipGameState extends ConsumerState<PlacementFieldScreen> {
                         point: point,
                         onWillAcceptWithDetails: (details) {
                           return placementNotifier.canPlaceShip(
-                              point, details.data);
+                            point,
+                            details.data,
+                          );
                         },
                         onAcceptWithDetails: (details) {
                           placementNotifier.dropShip(point, details.data);
                         },
                         onMove: (details) {
                           placementNotifier.onShipMovedOverField(
-                              point, details.data);
+                            point,
+                            details.data,
+                          );
                         },
-                        onLeave: (_) =>
-                            highlightNotifier.removeHighlighting(),
+                        onLeave: (_) => highlightNotifier.removeHighlighting(),
                       );
                     },
                   ),
@@ -119,11 +122,11 @@ class AvailableShipsPanel extends ConsumerWidget {
                 padding: const EdgeInsets.only(right: 16),
                 child: DraggableShip(
                   ship: ship,
-                  onEndDrag: () => highlightNotifier.removeHighlighting(),
+                  onEndDrag: highlightNotifier.removeHighlighting,
                 ),
               );
             },
-          )
+          ),
         ],
       ),
     );

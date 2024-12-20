@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:test_prog_genius/core/config.dart';
+import '../../../../core/config.dart';
 
 import '../enums/field_cell_state.dart';
 import '../enums/ship_type.dart';
@@ -44,7 +44,7 @@ class ShipPlacement extends _$ShipPlacement {
     /// Ignore own cells
     if (dragInfo.ship is PlacedShip) {
       final oldCells = _getPlacedShipCells(dragInfo.ship as PlacedShip);
-      cells.removeWhere((p) => oldCells.contains(p));
+      cells.removeWhere(oldCells.contains);
     }
     return _canPlaceShip(cells);
   }
@@ -83,7 +83,7 @@ class ShipPlacement extends _$ShipPlacement {
     final newState = state.copyWith(
       placedShips: state.placedShips..add(newShip),
       shipToPlace: state.shipToPlace
-        ..removeWhere(((ship) => ship.id == dragInfo.ship.id)),
+        ..removeWhere((ship) => ship.id == dragInfo.ship.id),
     );
 
     state = newState;
@@ -147,13 +147,12 @@ class ShipPlacement extends _$ShipPlacement {
         cells.add(Point(shipStartPoint.x + l, shipStartPoint.y));
       }
     }
-    print('Placed ship: $cells');
     return cells;
   }
 
   List<Point> _getDraggedShipCells(Point targetPoint, ShipDragInfo dragInfo) {
-    List<Point> cells = [];
-    for (int i = 0; i < dragInfo.ship.length; i++) {
+    final cells = <Point>[];
+    for (var i = 0; i < dragInfo.ship.length; i++) {
       cells.add(
         Point(targetPoint.x, targetPoint.y + i - dragInfo.tapOffset),
       );
@@ -173,7 +172,7 @@ class ShipPlacement extends _$ShipPlacement {
           cell.y < AppConfig.fieldSize;
     }
 
-    return cells.every((cell) => isValidCell(cell));
+    return cells.every(isValidCell);
   }
 
   bool _isCellsFree(List<Point> cells) {

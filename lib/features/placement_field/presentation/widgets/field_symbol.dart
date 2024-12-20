@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_prog_genius/features/placement_field/presentation/screens/placement_field_screen.dart';
+import '../screens/placement_field_screen.dart';
 
 class FieldSymbol extends StatelessWidget {
   const FieldSymbol({super.key, required this.symbol});

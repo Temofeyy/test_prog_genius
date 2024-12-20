@@ -1,18 +1,21 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:test_prog_genius/features/placement_field/presentation/screens/placement_field_screen.dart';
-import 'package:test_prog_genius/gen/assets.gen.dart';
 
+import '../../../../gen/assets.gen.dart';
 import '../../../../shared/widgets/orange_button.dart';
+import '../../../placement_field/presentation/screens/placement_field_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  void onNavigateToBattleField(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => PlacementFieldScreen()),
+  Future<void> onNavigateToBattleField(BuildContext context) async {
+    unawaited(
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => PlacementFieldScreen()),
+      ),
     );
   }
 
@@ -27,7 +30,7 @@ class HomeScreen extends StatelessWidget {
           Image.asset(Assets.images.logo.logo.path),
           const Spacer(),
           OrangeButton(
-            onTap: () => onNavigateToBattleField(context),
+            onTap: () async => onNavigateToBattleField(context),
             label: 'Play',
           ),
           const SizedBox(height: 16),

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:test_prog_genius/features/placement_field/presentation/providers/ship_placement_provider.dart';
+import 'ship_placement_provider.dart';
 
 part 'field_highlighting_provider.g.dart';
 
